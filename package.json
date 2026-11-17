@@ -1,27 +1,37 @@
 {
-  "name": "zamp",
-  "version": "0.1.0",
+  "name": "ap-invoice-decision-engine",
+  "version": "1.0.0",
   "private": true,
+  "description": "PS-1 AP invoice processing: PDF extraction, PO matching, Approve/Hold/Reject decisions",
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "dev": "next dev",
+    "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "fixtures": "tsx scripts/generate-fixtures.ts",
+    "seed": "tsx scripts/seed-runs.ts",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
+    "next": "15.5.29",
+    "pdf-parse": "^2.4.5",
+    "pdfkit": "^0.20.2",
     "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "next": "15.5.29"
+    "react-dom": "19.1.0"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
+    "@types/pdfkit": "^0.17.7",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "15.5.29",
-    "@eslint/eslintrc": "^3"
+    "tailwindcss": "^4",
+    "tsx": "^4.23.15",
+    "typescript": "^5",
+    "vitest": "^2.1.9"
   }
 }

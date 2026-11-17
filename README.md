@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AP Invoice Decision Engine
 
-## Getting Started
+ASA Case Study · **PS-1** · Invoice processing
 
-First, run the development server:
+Takes a vendor invoice PDF, runs a staged matching process against purchase-order data, and returns **Approve**, **Hold**, or **Reject** with a visible reason trail and run history.
+
+## Quick start
 
 ```bash
+npm install
+npm run fixtures
+npm test
+npm run seed
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Command | Purpose |
+|---------|---------|
+| `npm run fixtures` | Regenerate sample invoice PDFs |
+| `npm test` | Run TR-1…TR-4 pipeline tests |
+| `npm run seed` | Load dashboard with the four demo runs |
+| `npm run dev` | Start the app locally |
+| `npm run build && npm start` | Production build |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Process
 
-## Learn More
+1. Ingest PDF  
+2. Extract fields  
+3. Validate required fields  
+4. Match vendor  
+5. Match purchase order  
+6. Amount tolerance check  
+7. Duplicate detection  
+8. Decision  
 
-To learn more about Next.js, take a look at the following resources:
+Policy: [ASSUMPTIONS.md](ASSUMPTIONS.md) · Demo script: [DEMO.md](DEMO.md)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Test runs
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| ID | Fixture | Scenario | Expected |
+|----|---------|----------|----------|
+| TR-1 | `happy-path.pdf` | Exact PO, amount within remaining, approved vendor | Approve |
+| TR-2 | `tolerance.pdf` | Total 1.5% over PO remaining | Approve (tolerance applied) |
+| TR-3 | `missing-po.pdf` | PO `PO-9999` not in procurement data | Hold |
+| TR-4 | `duplicate.pdf` | Same vendor + invoice # as prior approved run | Reject |
 
-## Deploy on Vercel
+## Stack
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Next.js · TypeScript · Tailwind · pdf-parse · Vitest  
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+No API keys required.
+
+## Out of scope
+
+Email ingestion, OCR for scans, ERP write-back, authentication.

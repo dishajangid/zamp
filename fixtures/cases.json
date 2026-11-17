@@ -1,0 +1,30 @@
+[
+  {
+    "id": "TR-1",
+    "label": "Happy path",
+    "file": "happy-path.pdf",
+    "scenario": "Exact PO match, exact amount, approved vendor",
+    "expectedDecision": "Approve"
+  },
+  {
+    "id": "TR-2",
+    "label": "Within tolerance",
+    "file": "tolerance.pdf",
+    "scenario": "Invoice total 1.5% over PO remaining balance",
+    "expectedDecision": "Approve"
+  },
+  {
+    "id": "TR-3",
+    "label": "Missing PO",
+    "file": "missing-po.pdf",
+    "scenario": "Invalid PO reference not found in procurement data",
+    "expectedDecision": "Hold"
+  },
+  {
+    "id": "TR-4",
+    "label": "Duplicate invoice",
+    "file": "duplicate.pdf",
+    "scenario": "Same vendor and invoice number as a prior approved run",
+    "expectedDecision": "Reject"
+  }
+]

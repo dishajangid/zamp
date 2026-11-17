@@ -1,0 +1,17 @@
+[
+  {
+    "id": "V-1001",
+    "name": "Acme Supplies Inc",
+    "status": "approved"
+  },
+  {
+    "id": "V-1002",
+    "name": "Northwind Components LLC",
+    "status": "approved"
+  },
+  {
+    "id": "V-1003",
+    "name": "Globex Materials",
+    "status": "approved"
+  }
+]

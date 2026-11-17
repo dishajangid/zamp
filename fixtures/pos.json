@@ -1,0 +1,29 @@
+[
+  {
+    "poNumber": "PO-5001",
+    "vendorId": "V-1001",
+    "vendorName": "Acme Supplies Inc",
+    "amount": 5000.0,
+    "amountInvoiced": 0.0,
+    "currency": "USD",
+    "status": "open"
+  },
+  {
+    "poNumber": "PO-5002",
+    "vendorId": "V-1002",
+    "vendorName": "Northwind Components LLC",
+    "amount": 2000.0,
+    "amountInvoiced": 0.0,
+    "currency": "USD",
+    "status": "open"
+  },
+  {
+    "poNumber": "PO-5003",
+    "vendorId": "V-1003",
+    "vendorName": "Globex Materials",
+    "amount": 10000.0,
+    "amountInvoiced": 8500.0,
+    "currency": "USD",
+    "status": "open"
+  }
+]
